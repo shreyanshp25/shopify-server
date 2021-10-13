@@ -72,6 +72,11 @@ public class VendorController {
 	public Vendor addProduct(@RequestBody Vendor vendor) {
 		return vendorService.addProduct(vendor);
 	}
+	//get vendor by id
+	@GetMapping("vendor/{id}")
+	public ResponseEntity<Vendor> getVendorById(@PathVariable long id) {
+		return vendorService.fetchById(id);
+	}
 	//get products by id
 	@GetMapping("get-products/{id}")
 	public List<Products> getProductsOfShop(@PathVariable long id) {

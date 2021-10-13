@@ -40,5 +40,10 @@ public class VendorService {
 		List<Products> pdtObj = obj.getProducts();
 		return pdtObj;
 	}
+
+	public ResponseEntity<Vendor> fetchById(long id) {
+		Vendor obj = vendorRepo.findById(id).orElseThrow(() -> new ResourceNotFound("User Doesn't exist"));
+		return ResponseEntity.ok(obj);
+	}
 	
 }
