@@ -18,6 +18,7 @@ public class Buyer {
 	@Id
 	@GeneratedValue
 	private long id;
+	private String name;
 	private String emailId;
 	private long num;
 	private String pass;
