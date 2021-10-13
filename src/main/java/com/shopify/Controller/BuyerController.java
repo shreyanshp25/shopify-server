@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopify.DTOs.pdtDTO;
 import com.shopify.DTOs.shopsName;
 import com.shopify.Models.Buyer;
 import com.shopify.Service.BuyerService;
@@ -58,10 +59,16 @@ public class BuyerController {
 		return buyerService.fetchByEmailId(emailId);
 	}
 	//search shops by pin
-	@GetMapping("/get-vendors/{pin}")
+	@GetMapping("/vendors/{pin}")
 	public List<shopsName> getByPin(@PathVariable int pin){
 		return buyerService.fetchShopsByCity(pin);
 	}
+	//search by product
+	@GetMapping("/products/{pin}/{product}")
+	public List<pdtDTO> getShopsByPdt(@PathVariable int pin, @PathVariable String product){
+		return buyerService.fetchByPdt(pin, product);
+	}
+	
 	
 
 }
