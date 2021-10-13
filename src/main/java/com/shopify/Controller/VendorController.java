@@ -54,7 +54,7 @@ public class VendorController {
 		if(emailId != null &&  !" ".equals(emailId)) {
 			Vendor obj = vendorService.fetchByEmailId(emailId);
 			if(obj == null) {
-				throw new Exception("Enter correct email id");
+				throw new Exception("User doesn't exist");
 			}
 			else {
 				String p = obj.getPass();

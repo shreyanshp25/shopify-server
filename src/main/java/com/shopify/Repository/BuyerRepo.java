@@ -8,4 +8,6 @@ import com.shopify.Models.Buyer;
 @Repository
 public interface BuyerRepo extends JpaRepository<Buyer, Long> {
 
+	Buyer findByEmailId(String emailId);
+
 }
