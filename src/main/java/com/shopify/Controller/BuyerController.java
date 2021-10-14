@@ -3,6 +3,7 @@ package com.shopify.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shopify.DTOs.BuyerInfoDTO;
 import com.shopify.DTOs.pdtDTO;
 import com.shopify.DTOs.shopsName;
 import com.shopify.Models.Buyer;
@@ -69,6 +71,15 @@ public class BuyerController {
 	@GetMapping("/products/{pin}/{product}")
 	public List<pdtDTO> getShopsByPdt(@PathVariable int pin, @PathVariable String product){
 		return buyerService.fetchByPdt(pin, product);
+	}
+	//get buyer by id
+	@GetMapping("buyer/{id}")
+	public ResponseEntity<Buyer> getBuyer(@PathVariable long id){
+		return buyerService.fetchById(id);
+	}
+	@GetMapping("buyer-info/{id}")
+	public ResponseEntity<BuyerInfoDTO> getBuyerInfo(@PathVariable long id) {
+		return buyerService.fetchByIdForVendor(id);
 	}
 	
 	

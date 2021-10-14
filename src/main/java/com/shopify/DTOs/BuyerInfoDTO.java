@@ -11,9 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class pdtDTO {
+public class BuyerInfoDTO {
 	private long id;
 	private String shopName;
+	private String emailID;
+	private long num;
 	private String area;
 	private List<Products> products;
+
 }

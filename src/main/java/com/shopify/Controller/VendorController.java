@@ -68,8 +68,8 @@ public class VendorController {
 		return vendorService.fetchByEmailId(emailId);
 	}
 	//add products
-	@PutMapping("add-product")
-	public Vendor addProduct(@RequestBody Vendor vendor) {
+	@PutMapping("add-product/{id}")
+	public Vendor addProduct(@RequestBody Vendor vendor, @PathVariable long id) {
 		return vendorService.addProduct(vendor);
 	}
 	//get vendor by id
@@ -87,6 +87,15 @@ public class VendorController {
 	public Products getProductById(@PathVariable long id) {
 		return vendorService.fetchPdtById(id);
 	}
-	
+	//update product by id
+	@PutMapping("products/{id}")
+	public Products updateProduct(@RequestBody Products pdt, @PathVariable long id) {
+		return vendorService.updateById(id, pdt);
+	}
+	//get total products
+//	@GetMapping("total-products")
+//	public long getTotalProducts() {
+//		return vendorService.getTotalCount();
+//	}
 	
 }

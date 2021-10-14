@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.shopify.DTOs.BuyerInfoDTO;
 import com.shopify.DTOs.pdtDTO;
 import com.shopify.DTOs.shopsName;
+import com.shopify.Exceptions.ResourceNotFound;
 import com.shopify.Models.Buyer;
 import com.shopify.Models.Products;
 import com.shopify.Models.Vendor;
@@ -40,12 +43,22 @@ public class BuyerService {
 			 List<Products> pdtList = shop.getProducts();
 			 for(Products pdt : pdtList) {
 				 if(pdt.getPdtName().equals(product)) {
-					 pdtDTO obj = new pdtDTO(shop.getShopName(), shop.getArea(), shop.getProducts());
+					 pdtDTO obj = new pdtDTO(shop.getId(), shop.getShopName(), shop.getArea(), shop.getProducts());
 					 ans.add(obj); 
 				 }
 			 }
 		 }
 		 return ans;
+	}
+
+	public ResponseEntity<Buyer> fetchById(long id) {
+		Buyer obj = buyerRepo.findById(id).orElseThrow(() -> new ResourceNotFound("User doesn't exist"));
+		return ResponseEntity.ok(obj);
+	}
+	public ResponseEntity<BuyerInfoDTO> fetchByIdForVendor(long id) {
+		Vendor shop = vendorRepo.findById(id).orElseThrow(() -> new ResourceNotFound("User doesn't exist"));
+		BuyerInfoDTO obj = new BuyerInfoDTO(shop.getId(), shop.getShopName(), shop.getEmailId(), shop.getNum(), shop.getArea(), shop.getProducts());
+		return ResponseEntity.ok(obj);
 	}
 	
 }

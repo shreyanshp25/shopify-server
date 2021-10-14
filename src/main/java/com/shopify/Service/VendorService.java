@@ -49,5 +49,14 @@ public class VendorService {
 	public Products fetchPdtById(long id) {
 		return pdtRepo.findBypdtId(id);
 	}
+
+	public Products updateById(long id, Products pdt) {
+		Products obj = pdtRepo.findBypdtId(id);
+		obj.setQty(pdt.getQty());
+		obj.setPrice(pdt.getPrice());
+		pdtRepo.save(obj);
+		return obj;
+	}
+
 	
 }
