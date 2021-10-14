@@ -45,5 +45,9 @@ public class VendorService {
 		Vendor obj = vendorRepo.findById(id).orElseThrow(() -> new ResourceNotFound("User Doesn't exist"));
 		return ResponseEntity.ok(obj);
 	}
+
+	public Products fetchPdtById(long id) {
+		return pdtRepo.findBypdtId(id);
+	}
 	
 }

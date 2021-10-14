@@ -82,6 +82,11 @@ public class VendorController {
 	public List<Products> getProductsOfShop(@PathVariable long id) {
 		return vendorService.getPdtsById(id);
 	}
+	//get product by id
+	@GetMapping("products/{id}")
+	public Products getProductById(@PathVariable long id) {
+		return vendorService.fetchPdtById(id);
+	}
 	
 	
 }

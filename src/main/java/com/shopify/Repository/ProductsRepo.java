@@ -11,5 +11,7 @@ import com.shopify.Models.Products;
 
 @Repository
 public interface ProductsRepo extends JpaRepository<Products, Long>{
+
+	Products findBypdtId(long id);
 	
 }	
